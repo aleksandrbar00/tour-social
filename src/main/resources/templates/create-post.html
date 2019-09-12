@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{base.html}"
+><head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app" layout:fragment="content">
+        <div class="row">
+            <div class="col-8">
+                <h4>Create post</h4>
+                <form action="/posts/create" method="post">
+                    <input type="hidden" class="post-create__csrf" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" class="form-control post-create__title" name="title">
+                    </div>
+                    <div class="post-content-editor ">
+                    </div>
+                    <div class="form-actions d-flex justify-content-center align-items-center mt-2">
+                        <div class="post-editor__btn btn btn-outline-info mr-2">
+                            Check
+                        </div>
+                        <div class="btn btn-outline-success post-create__btn" >
+                            Save
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

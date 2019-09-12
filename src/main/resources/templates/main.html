@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{base.html}"
+>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="app" layout:fragment="content">
+        <h1>Main Page!</h1>
+        <h3 th:if="${#authentication.isAuthenticated()}" th:text="${user.username}"></h3>
+        <div class="row justify-content-end">
+            <div class="col-md-3">
+                <nav>
+                    <a href="/logout">Log out</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

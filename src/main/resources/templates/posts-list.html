@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{base.html}"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app" layout:fragment="content">
+        <div class="row">
+            <div class="col-8">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" th:each="post : ${posts}">
+                        <div class="post-title" th:text="${post.getTitle()}">
+                        </div>
+                        <div class="post-small-content">
+                            <span th:utext="${post.getContent()}"></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

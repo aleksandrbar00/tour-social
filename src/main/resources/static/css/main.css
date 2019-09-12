@@ -1,0 +1,27 @@
+.user-nav-section__image{
+    max-width: 30px;
+}
+
+header.header{
+    background: #e62525;
+}
+
+header.header a{
+    color: #fff !important;
+}
+
+.user-top-dropdown a.dropdown-item{
+    color: #121416 !important;
+}
+
+.navbar{
+    flex: 1;
+}
+
+.top-menu{
+    flex: 1;
+}
+
+.logout-wrapper{
+    padding-left: 1.25rem;
+}

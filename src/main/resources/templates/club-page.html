@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{base.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Club page</title>
+</head>
+<body>
+    <div id="app" layout:fragment="content">
+        <div class="row">
+            <div class="col-8">
+                <h1 th:text="${tourClub.getTitle()}"></h1>
+                <ul class="list-group list-group-flush">
+                    <h6>Club information</h6>
+                    <li class="list-group-item">
+                        Birth date: [[${tourClub.getClubBirthDate()}]]
+                    </li>
+                    <li class="list-group-item">
+                        Author: <a th:href="@{'/user/' + ${tourClub.getOwner().getUsername()}}">
+                        [[${tourClub.getOwner().getUsername()}]]
+                    </a>
+                    </li>
+                </ul>
+                <div class="club-about">
+                    <h6>About club</h6>
+                    <p class="lead" th:text="${tourClub.getAbout()}"></p>
+                </div>
+                <div class="club-followers">
+                    <h6>Followers([[${tourClub.getFollowers().size()}]])</h6>
+                    <div class="row">
+                        <div class="club-followers__item col-2 text-center" th:each="follower : ${tourClub.getFollowers()}">
+                            <img src="http://sts-dent.ru/up/photos/album/dec25/women-face.jpg" class="img-fluid border border-dark rounded-circle" alt="">
+                            <span class="font-weight-bold">
+                                <a th:href="@{'/user/' + ${follower.getUsername()}}" th:text="${follower.getUsername()}"></a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="club-card">
+                    <div class="club-image">
+                        <img th:src="@{${tourClub.getClubImage()}}" class="img-fluid" alt="">
+                    </div>
+                    <button type="button" class="btn btn-outline-primary btn-block mt-2">
+                        <a th:href="@{__${#httpServletRequest.requestURI}__/follow}">Follow</a>
+                    </button>
+                    <button th:if="${tourClub.isUserInFollowers(#authentication.getName())}" type="button" class="btn btn-outline-danger btn-block mt-2">
+                        <a class="text-danger" th:href="@{__${#httpServletRequest.requestURI}__/unfollow}">Leave club</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{base.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app" layout:fragment="content">
+        <div class="row justify-content-between">
+            <div class="col-2 club-list__title">
+                <h4>Club list</h4>
+            </div>
+            <a class="btn btn-outline-primary" href="
+            /clubs/add">Add club</a>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="tour-clubs__list">
+                    <div class="tour-clubs__item mt-2" th:each="tour : ${tourClubs}">
+                        <div class="tour-clubs__card card">
+                            <div class="row">
+                                <div class="col-4">
+                                    <img th:src="${tour.getClubImage()}" class="img-fluid">
+                                </div>
+                                <div class="col-8">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-start">
+                                            <h5 class="card-title" th:text="${tour.getTitle()}"></h5>
+                                            <small>Followers([[${tour.getFollowers().size()}]])</small>
+                                        </div>
+                                        <div class="card-text" th:text="${tour.getAbout()}"></div>
+                                        <div class="card-actions">
+                                            <a class="card-link btn btn-outline-info" th:href="@{'/clubs/' + ${tour.getId()}}">View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
